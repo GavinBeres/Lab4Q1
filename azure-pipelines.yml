@@ -1,0 +1,9 @@
+trigger:
+- main
+
+pool:
+  name: Default
+
+steps:
+- script: echo "Hello from Gavin's DevOps Pipeline"
+  displayName: 'Run a one-line script'
