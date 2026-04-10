@@ -28,4 +28,4 @@ steps:
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.symbols.nupkg'
-    publishVstsFeed: 'lab4q1-feed'
+    publishVstsFeed: 'Lab4Q1/lab4q1-feed'
