@@ -1,0 +1,31 @@
+trigger:
+- master
+
+pool:
+  name: Default
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET 8'
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+
+- script: dotnet restore
+  displayName: 'Restore'
+
+- script: dotnet build Lab4Q1.sln --configuration $(buildConfiguration)
+  displayName: 'Build'
+
+- script: dotnet pack StringLibrary/StringLibrary.csproj --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
+  displayName: 'Pack NuGet'
+
+- task: NuGetCommand@2
+  displayName: 'Push to Azure Artifacts'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.symbols.nupkg'
+    publishVstsFeed: 'Lab4Q1/lab4q1-feed'
