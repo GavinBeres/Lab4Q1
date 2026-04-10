@@ -5,7 +5,7 @@ string? input = Console.ReadLine();
 
 if (string.IsNullOrWhiteSpace(input))
 {
-    Console.WriteLine("No input provided.");
+    Console.WriteLine("No Input provided.");
 }
 else
 {
